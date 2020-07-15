@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'search_app',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,11 @@ ROOT_URLCONF = 'scuba_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'shop','templates/'), os.path.join(BASE_DIR, 'search_app','templates/'),],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'shop','templates/'),
+            os.path.join(BASE_DIR, 'search_app','templates/'),
+            os.path.join(BASE_DIR, 'cart','templates/'),
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,7 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'shop.context_processors.menu_links'
+                'shop.context_processors.menu_links',
+                'cart.context_processors.counter',
             ],
         },
     },
