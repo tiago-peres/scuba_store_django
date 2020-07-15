@@ -34,21 +34,48 @@ def add_cart(request, product_id):
         cart_item.save()
     return redirect('cart:cart_detail')
 
-def cart_detail(request, total=0, counter=0, cart_items=None):
-    try:
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items = CartItem.objects.filter(cart=cart, active=True)
-        for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
-            counter += cart_item.quantity
-    except ObjectDoesNotExist:
-        pass
-    
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    stripe_total = int(total * 100)
-    description = 'Scuba Store - New Order'
-    data_key = settings.STRIPE_PUBLISHABLE_KEY
-    return render(request, 'cart.html', dict(cart_items = cart_items, total = total, counter = counter, data_key = data_key, stripe_total = stripe_total, description = description))
+def cart_detail(request, total=0, counter=0, cart_items = None):
+	try:
+		cart = Cart.objects.get(cart_id=_cart_id(request))
+		cart_items = CartItem.objects.filter(cart=cart, active=True)
+		for cart_item in cart_items:
+			total += (cart_item.product.price * cart_item.quantity)
+			counter += cart_item.quantity
+	except ObjectDoesNotExist:
+		pass
+
+	stripe.api_key = settings.STRIPE_SECRET_KEY
+	stripe_total = int(total * 100)
+	description = 'Perfect Cushion Shop - New Order'
+	data_key = settings.STRIPE_PUBLISHABLE_KEY
+	if request.method == 'POST':
+		# print(request.POST)
+		try:
+			token = request.POST['stripeToken']
+			email = request.POST['stripeEmail']
+			billingName = request.POST['stripeBillingName']
+			billingAddress1 = request.POST['stripeBillingAddressLine1']
+			billingcity = request.POST['stripeBillingAddressCity']
+			billingPostcode = request.POST['stripeBillingAddressZip']
+			billingCountry = request.POST['stripeBillingAddressCountryCode']
+			shippingName = request.POST['stripeShippingName']
+			shippingAddress1 = request.POST['stripeShippingAddressLine1']
+			shippingcity = request.POST['stripeShippingAddressCity']
+			shippingPostcode = request.POST['stripeShippingAddressZip']
+			shippingCountry = request.POST['stripeShippingAddressCountryCode']
+			customer = stripe.Customer.create(
+						email=email,
+						source = token
+				)
+			charge = stripe.Charge.create(
+						amount=stripe_total,
+						currency="eur",
+						description=description,
+						customer=customer.id
+				)
+		except stripe.error.CardError as e:
+			return False,e
+	return render(request, 'cart.html', dict(cart_items = cart_items, total = total, counter = counter, data_key = data_key, stripe_total = stripe_total, description = description))
 
 def cart_remove(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
