@@ -17,28 +17,28 @@
 {% block content %}
     <!--Breadcrum navigation-->
     {% if category %}
-        <div>
-            <div>
+        <div class="row my_row_class">
+            <div class="mx-auto">
                 <p><a href="{% url 'shop:allProdCat' %}">Our Product Collection</a> | {{ category.name }}</p>
             </div>
         </div>
     {% endif %}
-    <div>
+    <div class="mx-auto">
     {% if category %}
-        <img src="{{ category.image.url }}" alt="{{category.name}}">
+        <img class="my_image" src="{{ category.image.url }}" alt="{{category.name}}">
     </div>
     <br>
     <div>
-        <h1>{{ category.name }}</h1>
-        <p>{{ category.description }}</p>
+        <h1 class="text-center my_title">{{ category.name }}</h1>
+        <p class="text-justify">{{ category.description }}</p>
     </div>
     {% else %}
-        <img src="{% static 'img/banner.png' %}" alt="Our Products Collection" style="width:100%">
+        <img class="my_image my_image_padding" src="{% static 'img/banner.png' %}" alt="Our Products Collection" style="width:100%">
     </div>
     <br>
     <div>
-        <h1>Our Products Collection</h1>
-        <p>In Scuba store, your online scuba dive shop, we offer you a huge range of diving products from leading brands as Scubapro, Suunto, Mares, Uwatec, Oceanic, Aqua Lung, Cressi, Mares, Tusa, Apeks, Atomic, Hollis and even more.
+        <h1 class="text-center my_title">Our Products Collection</h1>
+        <p class="text-justify">In Scuba store, your online scuba dive shop, we offer you a huge range of diving products from leading brands as Scubapro, Suunto, Mares, Uwatec, Oceanic, Aqua Lung, Cressi, Mares, Tusa, Apeks, Atomic, Hollis and even more.
             In Scuba store we think not just about selling the best diving equipment but also about giving the right advice and communication.
             With over 10 years of diving experience, underwater fishing, cave diving, our team of expert instructors in dive courses and PADI, we can help you to choose the right equipment for divers, snorkelers, and all water sports enthusiasts who can enjoy shopping a huge selection of everything you need for your diving trips, as: snorkeling gear, diving suits, diving computers, diving regulators, fins and always at the best price. In addition, we offer you the best experience on your purchase images about our products, complete descriptions and key characteristics we want to show you!
             We are always looking for ways to improve your experience both online and in-store, using the latest technology to provide you with the most detailed product information.
@@ -51,15 +51,15 @@
             With so many choices and prices is hard to resist. As a scuba diver, this is your hit. You join? </p>
     </div>
     {% endif %}
-    <div>
-        <div>
+    <div class="container">
+        <div class="row mx-auto">
             {% for product in products %}
-            <div>
-                <div>
-                    <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
-                    <div>
+            <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-12 col-lg-4">
+                <div class="card text-center" style="min-width: 18rem;">
+                    <a href="{{product.get_url}}"><img src="{{product.image.url}}" class="card-img-top my_image" alt="{{product.name}}"></a>
+                    <div class="card-body">
                         <h4>{{product.name}}</h4>
-                        <p>{{product.price}}€</p>
+                        <p class="card-text">{{product.price}}€</p>
                     </div>
                 </div>
             </div>
