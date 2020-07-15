@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to Scuba store where you can buy diving equipment.
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{ category.name }} - Scuba Store
+    {% else %}
+        See Our Diving Equipment Collection - Scuba Store
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <!--Breadcrum navigation-->
+    {% if category %}
+        <div>
+            <div>
+                <p><a href="{% url 'shop:allProdCat' %}">Our Product Collection</a> | {{ category.name }}</p>
+            </div>
+        </div>
+    {% endif %}
+    <div>
+    {% if category %}
+        <img src="{{ category.image.url }}" alt="{{category.name}}">
+    </div>
+    <br>
+    <div>
+        <h1>{{ category.name }}</h1>
+        <p>{{ category.description }}</p>
+    </div>
+    {% else %}
+        <img src="{% static 'img/banner.png' %}" alt="Our Products Collection" style="width:100%">
+    </div>
+    <br>
+    <div>
+        <h1>Our Products Collection</h1>
+        <p>In Scuba store, your online scuba dive shop, we offer you a huge range of diving products from leading brands as Scubapro, Suunto, Mares, Uwatec, Oceanic, Aqua Lung, Cressi, Mares, Tusa, Apeks, Atomic, Hollis and even more.
+            In Scuba store we think not just about selling the best diving equipment but also about giving the right advice and communication.
+            With over 10 years of diving experience, underwater fishing, cave diving, our team of expert instructors in dive courses and PADI, we can help you to choose the right equipment for divers, snorkelers, and all water sports enthusiasts who can enjoy shopping a huge selection of everything you need for your diving trips, as: snorkeling gear, diving suits, diving computers, diving regulators, fins and always at the best price. In addition, we offer you the best experience on your purchase images about our products, complete descriptions and key characteristics we want to show you!
+            We are always looking for ways to improve your experience both online and in-store, using the latest technology to provide you with the most detailed product information.
+            When you buy at our store, your satisfaction is guaranteed.
+            Our dive instructors, who have scuba certification, can set your scuba gear before it is given to you and also perform repairs with our guarantee service.
+            Our goal is to provide everybody with the knowledge they need to make an informed and unbiased purchase.
+            Our website is secured using SSL certificates to keep your information safe.
+            We are also certified by Trusted Shop and online trust; this means that when you buy your scuba gear, you can rest assured that it is 100% safe. We offer a return policy of 30 days and the lowest price guaranteed diving equipment.
+            Looking for cheap scuba gear?
+            With so many choices and prices is hard to resist. As a scuba diver, this is your hit. You join? </p>
+    </div>
+    {% endif %}
+    <div>
+        <div>
+            {% for product in products %}
+            <div>
+                <div>
+                    <a href=""><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                    <div>
+                        <h4>{{product.name}}</h4>
+                        <p>{{product.price}}€</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
