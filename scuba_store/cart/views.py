@@ -122,6 +122,7 @@ def cart_detail(request, total=0, counter=0, cart_items = None):
 			return False,e
 	return render(request, 'cart.html', dict(cart_items = cart_items, total = total, counter = counter, data_key = data_key, stripe_total = stripe_total, description = description))
 
+
 def cart_remove(request, product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -141,6 +142,24 @@ def full_remove(request, product_id):
     cart_item.delete()
     return redirect('cart:cart_detail')
 
+# def sendEmail(order_id):
+# 	transaction = Order.objects.get(id=order_id)
+# 	order_items = OrderItem.objects.filter(order=transaction)
+# 	try:
+# 		'''Sending the order'''
+# 		subject = "Scuba Store - New Order #{}".format(transaction.id)
+# 		to = ['{}'.format(transaction.emailAddress)]
+# 		from_email = "tiagomartinsperes@gmail.com"
+# 		order_information = {
+# 		'transaction' : transaction,
+# 		'order_items' :	order_items
+# 		}
+# 		message = get_template('email/email.html').render(order_information)
+# 		msg = EmailMessage(subject, message, to=to, from_email=from_email)
+# 		msg.content_subtype = 'html'
+# 		msg.send()
+# 	except IOError as e:
+# 		return e
 def sendEmail(order_id):
 	transaction = Order.objects.get(id=order_id)
 	order_items = OrderItem.objects.filter(order=transaction)
@@ -148,7 +167,7 @@ def sendEmail(order_id):
 		'''Sending the order'''
 		subject = "Scuba Store - New Order #{}".format(transaction.id)
 		to = ['{}'.format(transaction.emailAddress)]
-		from_email = "tiagomartinsperes@gmail.com"
+		from_email = '%s' % settings.EMAIL_HOST_USER
 		order_information = {
 		'transaction' : transaction,
 		'order_items' :	order_items

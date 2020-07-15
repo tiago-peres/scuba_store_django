@@ -144,3 +144,18 @@ STRIPE_SECRET_KEY = 'sk_test_51H5D4HAugzJ81FUAtZ8VSBDbMFITvDr29D8zRkNXNC6Jv4fi0o
 
 ##CRISPY FORMS
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+##EmailMessage SETTINGS
+# ##MailGun
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_PORT = '587'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'postmaster@sandboxddcc0feae9d546d2bc4c0e81e9ffc6ef.mailgun.org'
+# EMAIL_HOST_PASSWORD = 'e2a153a0a0ebea2b8b1bb3d0da6e5275-a83a87a9-3711ef67'
+###EmailMessage Settings###
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tiagomartinsperes@gmail.com'
+EMAIL_HOST_PASSWORD = '#'
