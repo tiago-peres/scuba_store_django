@@ -5,7 +5,7 @@
 			<li>
 				Welcome, <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.user.first_name }} <i class="fas fa-user-circle"></i></a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a href="#" class="dropdown-item">Order History</a>
+					<a href="{% url 'order:order_history' %}" class="dropdown-item">Order History</a>
 				</div>
 			</li>
 			<li>
