@@ -1,0 +1,95 @@
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Scuba Store - New Order #10
+From: tiagomartinsperes@gmail.com
+To: me@tiagoperes.eu
+Date: Thu, 16 Jul 2020 07:20:16 -0000
+Message-ID: <159488401631.14396.14391430060379494218@DESKTOP-KJ69LGG>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>New Order #10 - Scuba Store</title>
+		<style>
+			table {
+				width: 60%;
+				margin: 0 auto;
+				border-collapse: collapse;
+			}
+			table tr td {
+				border: 1px solid #c1c1c1;
+			}
+			p {
+				padding-right: 50px;
+				padding-left: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<h1>Thanks for shopping with us</h1>
+			<p>This email is to confirm that you have placed an order on the Scuba Store.<br>Please make sure that all the details of your order are correct.</p>
+		</center>
+		<br>
+		<table>
+			<tr>
+				<td valign="top" colspan="2" style="width: 50%;">
+					<b>Bill to:</b><br>
+					Tiago<br>
+					RLCP<br>
+					Px<br>
+					2520<br>
+					PT<br>
+				</td>
+				<td valign="top" colspan="2" style="width: 50%;">
+					<b>Order: </b>#10<br>
+					<b>Date: </b>16 Jul 2020
+				</td>
+			</tr>
+			<tr>
+				<td><b>Product Description</b></td>
+				<td><b>Qty</b></td>
+				<td><b>Unit Price</b></td>
+				<td><b>Sub-Total</b></td>
+			</tr>
+			
+			<tr>
+				<td>Beuchat Mundial Elite</td>
+				<td>1</td>
+				<td>79.99€</td>
+				<td>79.99€</td>
+			</tr>
+			
+			<tr>
+				<td colspan="3" style="text-align: right;"><b>Total</b></td>
+				<td>79.99€</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="text-align: right;"><b>Total paid</b></td>
+				<td>79.99€</td>
+			</tr>
+			<tr>
+				<td valign="top" colspan="2" style="width: 50%;">
+					<b>Ship to:</b><br>
+					Tiago<br>
+					RLCP<br>
+					Px<br>
+					2520<br>
+					PT<br>		
+				</td>
+				<td valign="top" colspan="2" style="width: 50%;">
+					<b>Payment details:</b><br>
+					£79.99 was paid successfully via Stripe.
+				</td>
+			</tr>
+		</table>
+		<center>
+			<br>
+			<p>If you are a registered customer and want to check your order history, please <a href="http://127.0.0.1:8000/account/login/">sign in</a>.<br>Otherwise <a href="http://127.0.0.1:8000/account/create/">sign up</a> to create a new account with us.</p>
+		</center>
+	</body>
+</html>
+-------------------------------------------------------------------------------

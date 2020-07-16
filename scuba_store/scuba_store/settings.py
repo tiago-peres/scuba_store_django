@@ -153,9 +153,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # EMAIL_HOST_USER = 'postmaster@sandboxddcc0feae9d546d2bc4c0e81e9ffc6ef.mailgun.org'
 # EMAIL_HOST_PASSWORD = 'e2a153a0a0ebea2b8b1bb3d0da6e5275-a83a87a9-3711ef67'
 ###EmailMessage Settings###
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+###EmailMessage Settings###
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'tiagomartinsperes@gmail.com'
-EMAIL_HOST_PASSWORD = '#'
+EMAIL_HOST_PASSWORD = 'wlzlilqkblmnapbx' # Refer to this - https://stackoverflow.com/a/62929967/5675325
+#EMAIL_FILE_PATH = os.path.join(BASE_DIR,'static','media','email')
