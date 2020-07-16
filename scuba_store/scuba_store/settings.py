@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shop',
+    'search_app',
+    'cart',
+    'stripe',
+    'order',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +60,12 @@ ROOT_URLCONF = 'scuba_store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'shop','templates/'),
+            os.path.join(BASE_DIR, 'search_app','templates/'),
+            os.path.join(BASE_DIR, 'cart','templates/'),
+            os.path.join(BASE_DIR, 'order','templates/'),
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.menu_links',
+                'cart.context_processors.counter',
             ],
         },
     },
@@ -118,3 +131,34 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'static','media')
+
+##STRIPE SETTINGS
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51H5D4HAugzJ81FUAgxasPDd9mmOBc9uCVdAsJf3MBT3g2a08pXWEcvOp4mdaNJu0yRkqxoZoQQdPZ4a9G54JJHTQ00QIW9jQSd'
+STRIPE_SECRET_KEY = 'sk_test_51H5D4HAugzJ81FUAtZ8VSBDbMFITvDr29D8zRkNXNC6Jv4fi0oQpj8XfpVeBYDqBhhDgVdqHLGdoymRPATto3Mmw003i4gHwWR'
+
+##CRISPY FORMS
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+##EmailMessage SETTINGS
+# ##MailGun
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_PORT = '587'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'postmaster@sandboxddcc0feae9d546d2bc4c0e81e9ffc6ef.mailgun.org'
+# EMAIL_HOST_PASSWORD = 'e2a153a0a0ebea2b8b1bb3d0da6e5275-a83a87a9-3711ef67'
+###EmailMessage Settings###
+#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+###EmailMessage Settings###
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tiagomartinsperes@gmail.com'
+EMAIL_HOST_PASSWORD = 'wlzlilqkblmnapbx' # Refer to this - https://stackoverflow.com/a/62929967/5675325
+#EMAIL_FILE_PATH = os.path.join(BASE_DIR,'static','media','email')
